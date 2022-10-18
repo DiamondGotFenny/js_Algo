@@ -1,0 +1,19 @@
+{
+  "devDependencies": {
+    "jest": "^29.1.2"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Current File",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/${relativeFile}"
+    }
+  ]
+}
