@@ -24,7 +24,7 @@ function steps(n, row = 0, stair = '') {
   }
   //check if we reach the end of each row
   if (n === stair.length) {
-    //if we reach the row en, we print
+    //if we reach the row end, we print
     console.log(stair);
     //move to the next row if we reach the end of a row
     return steps(n, row + 1);
