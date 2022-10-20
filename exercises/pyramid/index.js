@@ -14,22 +14,10 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n, row = 0, level = '') {
-  if (n === row) {
-    return;
+function pyramid(n) {
+  for (let i = 1; i <= n; i++) {
+    console.log(' '.repeat(n - i) + '#'.repeat(i * 2 - 1) + ' '.repeat(n - i));
   }
-  if (level.length === 2 * n - 1) {
-    console.log(level);
-    return pyramid(n, row + 1);
-  }
-  const midpoint = n - 1;
-  let add;
-  if (midpoint - row <= level.length && midpoint + row >= level.length) {
-    add = '#';
-  } else {
-    add = ' ';
-  }
-  pyramid(n, row, level + add);
 }
 module.exports = pyramid;
 
@@ -65,8 +53,37 @@ module.exports = pyramid;
   }
 } */
 
-/* function pyramid(n) {
-  for (let i = 1; i <= n; i++) {
-    console.log(' '.repeat(n - i) + '#'.repeat(i * 2 - 1) + ' '.repeat(n - i));
+/* function pyramid(n, row = 0, level = '') {
+  if (n === row) {
+    return;
   }
+  if (level.length === 2 * n - 1) {
+    console.log(level);
+    return pyramid(n, row + 1);
+  }
+  const midpoint = n - 1;
+  let add;
+  if (midpoint - row <= level.length && midpoint + row >= level.length) {
+    add = '#';
+  } else {
+    add = ' ';
+  }
+  pyramid(n, row, level + add);
+} */
+
+/* function pyramid(noOfRows, noOfHashTagsToPrint = 1) {
+  if (noOfHashTagsToPrint > noOfRows * 2 - 1) {
+    return;
+  }
+
+  let noOfColumns = noOfRows * 2 - 1;
+  let noOfSpacesFromOneSide = (noOfColumns - noOfHashTagsToPrint) / 2;
+  let row = '';
+
+  row += ' '.repeat(noOfSpacesFromOneSide);
+  row += '#'.repeat(noOfHashTagsToPrint);
+  row += ' '.repeat(noOfSpacesFromOneSide);
+
+  console.log(row);
+  pyramid(noOfRows, noOfHashTagsToPrint + 2);
 } */
