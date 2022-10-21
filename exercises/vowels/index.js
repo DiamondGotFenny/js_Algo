@@ -49,7 +49,11 @@ module.exports = vowels;
     .includes(char)) ? acc + 1 : acc), 0); */
 
 //the includes() function has performance issues, it is O(5n);
-/* Since we have to visit every character in the string we're scanning for vowels, that will be O(N) for the size of the string we are scanning. The includes method is nested inside of the for loop iterating through our string. In conclusion, the worst case time complexity for this solution would be O(N*M) because they will most likely be different in length. If the collection of vowels and the string have the same length, we can say O(N^2). */
+/* Since we have to visit every character in the string we're scanning for vowels, 
+that will be O(N) for the size of the string we are scanning. The includes method is nested inside of
+ the for loop iterating through our string. In conclusion, the worst case time complexity for this solution 
+ would be O(N*M) because they will most likely be different in length. If the collection of vowels and the 
+ string have the same length, we can say O(N^2). */
 //we can just use char==="a"||"e"...  here
 /* function vowels(str) {
   let counts = 0;
