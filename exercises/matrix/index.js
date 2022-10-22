@@ -16,45 +16,50 @@
 //     [10,  9,  8, 7]]
 
 function matrix(n) {
-  const result = [];
-  for (let i = 0; i <= n; i++) {
-    result.push([]);
+  const matrix = [];
+  for (let i = 0; i < n; i++) {
+    matrix.push([]);
   }
+
+  let leftColumn = 0;
+  let rightColumn = n - 1;
+  let topRow = 0;
+  let bottomRow = n - 1;
   let counter = 1;
-  let startRow = 0;
-  let endRow = n - 1;
-  let startColumn = 0;
-  let endColumn = n - 1;
-  while (startRow <= endRow && startColumn <= endColumn) {
-    //top row
-    for (let i = startColumn; i <= endColumn; i++) {
-      result[startRow][i] = counter;
+  //[row, column]
+  while (leftColumn <= rightColumn && topRow <= bottomRow) {
+    //print counter from position[0,0] to[0,n];
+    for (let i = leftColumn; i <= rightColumn; i++) {
+      matrix[topRow][i] = counter;
       counter++;
     }
-    startRow++;
-
-    //right column
-    for (let i = startRow; i <= endRow; i++) {
-      result[i][endColumn] = counter;
+    //move limit to row 2, as first row is filled; start from[1,n]
+    topRow++;
+    //move from position[1,n] to[n,n];
+    for (let i = topRow; i <= bottomRow; i++) {
+      matrix[i][rightColumn] = counter;
       counter++;
     }
-    endColumn--;
-
-    //bottom row
-    for (let i = endColumn; i >= startColumn; i--) {
-      result[endRow][i] = counter;
+    //move limit to left,as final column is filled; start from column [n,n]
+    rightColumn--;
+    //move from position[n,n] to[n,0];
+    for (let i = rightColumn; i >= leftColumn; i--) {
+      matrix[bottomRow][i] = counter;
       counter++;
     }
-    endRow--;
-
-    //left column
-    for (let i = endRow; i >= startRow; i++) {
-      result[i][startColumn] = counter;
+    //move limit up, as the final row is filled, start from [n,0]
+    bottomRow--;
+    //move from position [n,0] to[1,1]
+    for (let i = bottomRow; i >= topRow; i--) {
+      matrix[i][leftColumn] = counter;
       counter++;
     }
-    startColumn++;
+    //move limit to right, as the first column is filled
+    leftColumn++;
+    //repeat the steps till all position are filled
   }
-  return result;
+  return matrix;
 }
 
 module.exports = matrix;
+//can use point to find direction
