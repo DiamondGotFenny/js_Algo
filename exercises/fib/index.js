@@ -29,23 +29,6 @@ function slowfib(n) {
 let fib = memoize(slowfib);
 module.exports = fib;
 
-/* function memoizeFib(fn) {
-    const cache = {};
-    return function(...args) {
-      if(cache[args]) {
-        return cache[args];
-      }
-      var result = fn.apply(this, args);
-      cache[args] = result;
-      return result;
-    };
-  }
-   
-  console.time('Memoized Fibonacci');
-  var memFibonacci = memoizeFib(fib);
-  memFibonacci(40, memFibonacci);
-  console.timeEnd('Memoized Fibonacci'); */
-
 /* function fib(n) {
   const result = [0, 1];
   for (let i = 2; i <= n; i++) {
