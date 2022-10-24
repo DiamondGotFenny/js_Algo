@@ -18,6 +18,9 @@
   remove() {
     return this.data.shift();
   }
+  peek() {
+    return this.data[0];
+  }
 } */
 
 //without using class
@@ -85,6 +88,10 @@ class Queue {
     this.first = this.first.next;
     this.size--;
     return temp.value;
+  }
+  peek() {
+    if (!this.first) return undefined;
+    return this.first.value;
   }
 }
 /* const newQ = new Queue();
