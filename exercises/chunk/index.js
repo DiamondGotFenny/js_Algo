@@ -11,13 +11,16 @@
 function chunk(array, size) {
   const chunked = [];
   for (let element of array) {
-    //we get the last array from chunked;and array is reference type, this is importance. so that we can access to the last array in chunked via last
-    const last = chunked[chunked.length - 1];
-    //if we do not have an array or the previous(the old "last" array) is full we take create a new array for containing the element, as the new "last" array
+    //we get the last ele of chunked as a start point, we read the last ele
+    //every iteration,
+    let last = chunked[chunked.length - 1];
+    //if the last ===undefined(which is the first iteration) or the sub
+    //array reach the size, we push that to chunked
+    //we create a new sub-array as the "last" array then push to chunked
     if (!last || last.length === size) {
       chunked.push([element]);
     } else {
-      //if the old "last" array is not full, we push element to it
+      //if the "last" array is not full, we push element to it
       last.push(element);
     }
   }
@@ -25,7 +28,6 @@ function chunk(array, size) {
 }
 chunk([1, 2, 3, 4, 5, 6, 7], 3);
 module.exports = chunk;
-
 //simpler, but splice will mutates the original array and is also a heavy operation as it changes the index of each value in each use.
 /* function chunk(array, size) {
   const chunked = [];

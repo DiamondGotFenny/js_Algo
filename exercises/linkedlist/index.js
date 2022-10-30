@@ -8,13 +8,14 @@ class Node {
     this.next = next;
   }
 }
-
+//we may reuse the getAt() to implement some method, so that reduce
+//duplicated code
 class LinkedList {
   constructor() {
     this.head = null;
   }
   insertFirst(data) {
-    this.head = new Node(data, this.head);
+    this.insertAt(data, 0);
   }
   size() {
     let counts = 0;
@@ -29,6 +30,10 @@ class LinkedList {
     return this.head;
   }
   getLast() {
+    //but compare to the original one(which is O(n)), this is O(2n)
+    //so this might not be a good solution
+    // return this.getAt(this.size() - 1);
+
     let node = this.head;
     while (node) {
       if (!node.next) {
@@ -94,6 +99,96 @@ class LinkedList {
     }
     //if index couldn't find
     return null;
+  }
+  removeAt(index) {
+    if (!this.head) {
+      return;
+    }
+    if (index === 0) {
+      this.head = this.head.next;
+    }
+    let previous = this.getAt(index - 1);
+    if (!previous || !previous.next) {
+      return;
+    }
+    previous.next = previous.next.next;
+
+    /* if (index === 0) {
+      this.head = this.head && this.head.next
+      return
+    }
+    let prevNode = this.getAt(index - 1)
+    if (prevNode) {
+      prevNode.next = prevNode.next && prevNode.next.next
+    } */
+  }
+  insertAt(data, index) {
+    //O(2n)as getLast() and getAt() is two O(n)
+    if (!this.head) {
+      this.head = new Node(data, null);
+      return;
+    }
+    if (index === 0) {
+      this.head = new Node(data, this.head);
+      return;
+    }
+    //if this.getAt(index - 1)===undefined, that means index may be the last
+    //ele, then we return the last ele, we should add that ele as last ele
+    let previous = this.getAt(index - 1) || this.getLast();
+    const node = new Node(data, previous.next);
+    previous.next = node;
+
+    //solution 2 O(n)
+    // insert in the beginning
+    /* if (!this.head || index === 0) {
+      this.insertFirst(data);
+      return;
+    }
+
+    let counter = 0;
+    let previousNode;
+    let node = this.head;
+
+    while (counter < index) {
+      // end of list / out of bound
+      if (!node.next) {
+        node.next = new Node(data);
+        return;
+      }
+      previousNode = node;
+      node = node.next;
+      counter++;
+    }
+
+    // insert in the middle
+    if (previousNode) {
+      previousNode.next = new Node(data, node);
+    } */
+
+    //solution 3
+    /*  if (index === 0) return this.insertFirst(data);
+    let node = this.head;
+    for (let i = 1; i < index; i++) {
+      if (node.next) node = node.next;
+    }
+    node.next = new Node(data, node.next); */
+  }
+  forEach(fn) {
+    let node = this.head;
+    let counter = 0;
+    while (node) {
+      fn(node, counter);
+      node = node.next;
+      counter++;
+    }
+  }
+  //generator version for for...of linked list
+  *[Symbol.iterator]() {
+    let node = this.head;
+    while (node) {
+      yield node;
+      node = node.next;
+    }
   }
 }
 
