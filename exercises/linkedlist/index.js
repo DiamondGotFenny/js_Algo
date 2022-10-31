@@ -15,7 +15,9 @@ class LinkedList {
     this.head = null;
   }
   insertFirst(data) {
-    this.insertAt(data, 0);
+    //the reused code here is not good, as insertAt() is O(2n)
+    //this.insertAt(data, 0);
+    this.head = new Node(data, this.head);
   }
   size() {
     let counts = 0;
@@ -123,7 +125,6 @@ class LinkedList {
     } */
   }
   insertAt(data, index) {
-    //O(2n)as getLast() and getAt() is two O(n)
     if (!this.head) {
       this.head = new Node(data, null);
       return;
@@ -134,6 +135,7 @@ class LinkedList {
     }
     //if this.getAt(index - 1)===undefined, that means index may be the last
     //ele, then we return the last ele, we should add that ele as last ele
+    //O(2n)as getLast() and getAt() is two O(n)
     let previous = this.getAt(index - 1) || this.getLast();
     const node = new Node(data, previous.next);
     previous.next = node;
