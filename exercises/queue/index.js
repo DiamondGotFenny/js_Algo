@@ -58,7 +58,50 @@ class Node {
 }
 
 // We create a class for the queue
+
 class Queue {
+  constructor() {
+    this.head = null;
+    this.size = 0;
+  }
+  add(data) {
+    const newNode = new Node(data);
+    if (!this.head) {
+      return (this.head = newNode);
+    }
+
+    let node = this.head;
+    while (node.next) {
+      node = node.next;
+    }
+    node.next = newNode;
+    ++this.size;
+  }
+  remove() {
+    if (!this.head) {
+      return undefined;
+    }
+    if (!this.head.next) {
+      const value = this.head.value;
+      this.head = null;
+      return value;
+    }
+    const node = this.head;
+    this.head = this.head.next;
+    --this.size;
+    return node.value;
+  }
+  peek() {
+    if (!this.head) {
+      return undefined;
+    }
+
+    return this.head.value;
+  }
+}
+
+//double linked list
+/* class Queue {
   // The queue has three properties, the first node, the last node and the stack size
   constructor() {
     this.first = null;
@@ -93,7 +136,7 @@ class Queue {
     if (!this.first) return undefined;
     return this.first.value;
   }
-}
+} */
 /* const newQ = new Queue();
 newQ.add('value 1');
 newQ.add('value 2');
