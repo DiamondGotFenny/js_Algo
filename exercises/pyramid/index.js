@@ -29,8 +29,8 @@ module.exports = pyramid;
     let level = '';
     //row is symmetrical, so its length must be odd.
     for (let column = 0; column < 2 * n - 1; column++) {
-      //in the left side of midpoint, when row > column, it is #
-      //in the right side of midpoint, when row<column, it is #
+      //midpoint - row is the left bounce to print the #
+      //midpoint + row is the right bounce to print the #
       //when when column =midpoint, it must be "#"
       if (midpoint - row <= column && midpoint + row >= column) {
         level += '#';
