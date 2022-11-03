@@ -10,7 +10,9 @@
 //    list.insertLast('c');
 //    list.insertLast('d');
 //    fromLast(list, 2).data // 'b'
-
+//slow------fast----------
+//head       n          end
+//----------slow-------fast
 function fromLast(list, n) {
   let fast = list.head;
   let slow = list.head;
