@@ -12,7 +12,7 @@
 // Answer: [1, 3, 2]
 
 function levelWidth(root) {
-  const arr = [root, 's'];
+  let arr = [root, 's'];
   const counters = [0];
   while (arr.length > 1) {
     let node = arr.shift();
@@ -20,7 +20,8 @@ function levelWidth(root) {
       counters.push(0);
       arr.push('s');
     } else {
-      arr.push(...node.children);
+      //push() will have bug if the node.children number is a big number
+      arr = arr.concat(node.children);
       counters[counters.length - 1]++;
     }
   }
