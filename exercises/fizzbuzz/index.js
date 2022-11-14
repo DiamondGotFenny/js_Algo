@@ -14,6 +14,7 @@
 
 function fizzBuzz(n) {
   for (let i = 1; i <= n; i++) {
+    //we must use the two condition as first filter
     if (i % 3 === 0 && i % 5 === 0) {
       console.log('fizzbuzz');
     } else if (i % 3 === 0) {
