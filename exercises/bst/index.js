@@ -18,8 +18,12 @@ class Node {
     this.right = null;
   }
   insert(data) {
+    // if the input data is bigger smaller than current node value
+    //it goes left; and if there is already a left node there
+    //we checking with that left node
     if (data < this.data && this.left) {
       this.left.insert(data);
+      //if there is no left node there, we put that data as left node
     } else if (data < this.data) {
       this.left = new Node(data);
     } else if (data > this.data && this.right) {
@@ -39,6 +43,22 @@ class Node {
     }
     return null;
   }
-}
 
+  //while loop version
+  /*  contains(value) {
+    let node = this;
+
+    while (node) {
+      if (value < node.data) {
+        if (node.left) node = node.left;
+        else return null;
+      } else if (value > node.data) {
+        if (node.right) node = node.right;
+        else return null;
+      } else {
+        return node;
+      }
+    }
+  } */
+}
 module.exports = Node;
