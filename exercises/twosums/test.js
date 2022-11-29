@@ -22,4 +22,5 @@ test('twoSum handles array that will  come up with solution', () => {
   expect(twoSum([3, 2, 4], 6)).toEqual([1, 2]);
   expect(twoSum([3, 3], 6)).toEqual([0, 1]);
   expect(twoSum([3, 2, 4, 1, 9], 12)).toEqual([0, 4]);
+  expect(twoSum([3, 2, 5, 1, 9], 14)).toEqual([0, 4]);
 });
